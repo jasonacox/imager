@@ -1,0 +1,101 @@
+# Imager Default Configuration
+
+# Model Configuration
+model:
+  # Text Encoder
+  text_encoder_name: "openai/clip-vit-base-patch32"
+  text_encoder_max_length: 77
+  text_embedding_dim: 512
+  
+  # UNet Architecture
+  unet_in_channels: 4
+  unet_out_channels: 4
+  unet_down_block_types:
+    - "CrossAttnDownBlock2D"
+    - "CrossAttnDownBlock2D" 
+    - "CrossAttnDownBlock2D"
+    - "DownBlock2D"
+  unet_up_block_types:
+    - "UpBlock2D"
+    - "CrossAttnUpBlock2D"
+    - "CrossAttnUpBlock2D"
+    - "CrossAttnUpBlock2D"
+  unet_block_out_channels: [320, 640, 1280, 1280]
+  unet_layers_per_block: 2
+  unet_attention_head_dim: 8
+  unet_cross_attention_dim: 768
+  
+  # Diffusion Parameters
+  num_train_timesteps: 1000
+  beta_start: 0.00085
+  beta_end: 0.012
+  beta_schedule: "scaled_linear"
+  
+  # VAE Configuration
+  vae_name: "stabilityai/sd-vae-ft-mse"
+  latent_channels: 4
+  latent_scale_factor: 0.18215
+
+# Training Configuration
+training:
+  # Dataset
+  dataset_name: null
+  dataset_path: null
+  image_size: 512
+  batch_size: 4
+  num_workers: 4
+  
+  # Optimization
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  num_epochs: 100
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+  
+  # Learning Rate Scheduler
+  lr_scheduler: "cosine"
+  lr_warmup_steps: 500
+  
+  # Checkpointing
+  save_every_n_epochs: 5
+  checkpoint_dir: "./checkpoints"
+  resume_from_checkpoint: null
+  
+  # Logging
+  log_every_n_steps: 100
+  use_wandb: false
+  wandb_project: "imager"
+  wandb_run_name: null
+  
+  # Validation
+  val_every_n_epochs: 1
+  num_val_samples: 4
+  val_prompts:
+    - "a beautiful landscape"
+    - "a cat sitting on a table"
+    - "abstract art"
+    - "a futuristic city"
+
+# Inference Configuration
+inference:
+  # Generation Parameters
+  num_inference_steps: 50
+  guidance_scale: 7.5
+  height: 512
+  width: 512
+  
+  # Sampling
+  sampler: "ddim"
+  eta: 0.0
+  
+  # Output
+  output_dir: "./outputs"
+  save_intermediate: false
+  
+  # Hardware
+  device: "auto"
+  mixed_precision: true
+
+# Global Settings
+seed: 42
+project_name: "imager"

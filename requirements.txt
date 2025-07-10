@@ -1,0 +1,42 @@
+# Core ML frameworks
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Transformers and diffusion models
+transformers>=4.30.0
+diffusers>=0.18.0
+accelerate>=0.20.0
+
+# Data processing
+datasets>=2.12.0
+Pillow>=9.0.0
+opencv-python>=4.7.0
+numpy>=1.24.0
+
+# Configuration and utilities
+omegaconf>=2.3.0
+hydra-core>=1.3.0
+rich>=13.0.0
+tqdm>=4.65.0
+
+# Experiment tracking
+wandb>=0.15.0
+tensorboard>=2.13.0
+
+# Development tools
+pytest>=7.3.0
+black>=23.0.0
+isort>=5.12.0
+flake8>=6.0.0
+mypy>=1.3.0
+
+# Optional dependencies for advanced features
+# gradio>=3.35.0  # For web interface
+# streamlit>=1.23.0  # Alternative web interface
+# xformers>=0.0.20  # For memory-efficient attention (if available)
+
+# For Jupyter notebooks (development)
+jupyter>=1.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
